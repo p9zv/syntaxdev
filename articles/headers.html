@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حل مشكلة headers already sent</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header>Syntax Dev</header>
+
+<div class="container">
+
+<h2>حل مشكلة headers already sent في PHP</h2>
+
+<p>يظهر الخطأ عند استخدام session_start أو header بعد طباعة محتوى.</p>
+
+<h3>الحل</h3>
+<pre>
+تأكد عدم وجود مسافات قبل <?php
+ولا تضع ?> في نهاية الملف.
+</pre>
+
+</div>
+
+</body>
+</html>
