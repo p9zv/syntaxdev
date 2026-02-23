@@ -1,0 +1,97 @@
+182"}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>حل مشكلة 419 Page Expired في Laravel (شرح كامل)</title>
+
+<meta name="description" content="شرح مفصل لحل مشكلة 419 Page Expired في Laravel مع معرفة سبب الخطأ وطريقة إصلاحه في النماذج و CSRF Token خطوة بخطوة.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+<img src="../images/logo.svg">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+</div>
+</div>
+
+<div class="container">
+
+<h1>حل مشكلة 419 Page Expired في Laravel</h1>
+
+<p>
+يعتبر خطأ 419 Page Expired من أكثر الأخطاء شيوعاً في Laravel، وغالباً يظهر عند إرسال نموذج (Form).
+</p>
+
+<h2>شكل الخطأ</h2>
+
+<pre><code>
+419 | Page Expired
+</code></pre>
+
+<h2>سبب المشكلة</h2>
+
+<p>
+Laravel يستخدم نظام حماية يسمى CSRF Protection.
+أي نموذج يتم إرساله إلى السيرفر يجب أن يحتوي على CSRF Token للتأكد أن الطلب قادم من نفس الموقع.
+</p>
+
+<h2>الحل الأساسي</h2>
+
+<p>أضف هذا السطر داخل الفورم:</p>
+
+<pre><code>
+@csrf
+</code></pre>
+
+<h2>مثال صحيح</h2>
+
+<pre><code>
+<form method="POST" action="/login">
+    @csrf
+    <input type="text" name="email">
+    <input type="password" name="password">
+    <button type="submit">Login</button>
+</form>
+</code></pre>
+
+<h2>أسباب أخرى للمشكلة</h2>
+
+<ul>
+<li>انتهاء صلاحية الجلسة (Session Timeout)</li>
+<li>تغيير رابط الموقع من http إلى https</li>
+<li>الدخول من رابط محفوظ قديم</li>
+<li>مشكلة في إعدادات الكوكيز</li>
+</ul>
+
+<h2>حلول إضافية</h2>
+
+<h3>تحديث صفحة النموذج</h3>
+<p>قم بتحديث الصفحة قبل إرسال النموذج.</p>
+
+<h3>تعديل ملف .env</h3>
+
+<pre><code>
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+</code></pre>
+
+<h2>نصيحة</h2>
+<p>
+لا تقم أبداً بتعطيل CSRF Middleware لأنه يحمي موقعك من هجمات خطيرة.
+</p>
+
+</div>
+
+<footer>
+<p>© Syntax Dev</p>
+</footer>
+
+</body>
+</html>
