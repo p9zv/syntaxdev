@@ -1,0 +1,5 @@
+<svg width="140" height="40" viewBox="0 0 140 40" xmlns="http://www.w3.org/2000/svg">
+  <rect width="140" height="40" rx="10" fill="#111827"/>
+  <text x="12" y="26" font-family="monospace" font-size="18" fill="#60a5fa">&lt;/&gt;</text>
+  <text x="55" y="26" font-family="Segoe UI" font-size="16" fill="#e5e7eb">Syntax</text>
+</svg>
