@@ -15,34 +15,74 @@
 <a href="../index.html">الرئيسية</a>
 </div>
 </div>
-
+}
 <div class="container">
 
 <h1>حل مشكلة headers already sent في PHP</h1>
 
 <p>
-يظهر الخطأ عندما يقوم PHP بإرسال بيانات للمتصفح قبل إرسال HTTP Headers.
+يعد هذا الخطأ من أكثر الأخطاء شيوعاً لدى مطوري PHP خاصة عند استخدام sessions أو التحويل باستخدام header().
+رسالة الخطأ غالباً تظهر بهذا الشكل:
 </p>
+
+<pre><code>
+Warning: Cannot modify header information - headers already sent
+</code></pre>
+
+<h2>ما معنى الخطأ؟</h2>
+<p>
+بروتوكول HTTP يتطلب إرسال معلومات الهيدر أولاً قبل أي محتوى HTML.
+عند قيام PHP بإرسال أي نص للمتصفح (حتى مسافة أو سطر فارغ) يعتبر أن الإخراج بدأ بالفعل،
+وبعدها لا يمكن تعديل الهيدر أو تنفيذ عملية redirect.
+</p>
+
+<h2>أسباب حدوث المشكلة</h2>
+
+<ul>
+<li>وجود مسافة قبل بداية كود PHP <?php</li>
+<li>استخدام echo قبل header()</li>
+<li>وجود HTML قبل session_start()</li>
+<li>إغلاق ملف PHP بعلامة ?> ثم إضافة سطر جديد بعده</li>
+</ul>
 
 <h2>مثال على الخطأ</h2>
 
-<pre><code>
-echo "Hello";   <span class="comment">// هنا بدأ الإخراج للمتصفح</span>
+<p>الكود التالي سيؤدي إلى ظهور المشكلة:</p>
 
-header("Location: index.php"); <span class="comment">// الخطأ: حاول إرسال headers بعد الإخراج</span>
+<pre><code>
+echo "Welcome";  // بدأ الإخراج للمتصفح
+
+header("Location: home.php");  // هنا سيظهر الخطأ
 </code></pre>
 
 <h2>الحل الصحيح</h2>
 
+<p>يجب تنفيذ التحويل قبل أي إخراج:</p>
+
 <pre><code>
 <?php
-header("Location: index.php"); 
-exit(); <span class="comment">// نوقف التنفيذ بعد التحويل</span>
+header("Location: home.php");
+exit();  // نوقف تنفيذ السكربت بعد التحويل
 </code></pre>
 
-<h2>نصيحة مهمة</h2>
+<h2>الحل باستخدام Output Buffering</h2>
+
+<pre><code>
+<?php
+ob_start();
+session_start();
+</code></pre>
+
 <p>
-لا تضع أي مسافات قبل بداية ملف PHP ولا تكتب ?> في نهاية ملفات PHP.
+تقوم الدالة ob_start() بتأجيل إرسال الإخراج مؤقتاً،
+لكن يفضل دائماً إصلاح سبب المشكلة الأساسي بدلاً من الاعتماد عليها فقط.
+</p>
+
+<h2>نصيحة مهمة للمطورين</h2>
+
+<p>
+لا تقم بإغلاق ملفات PHP البحتة باستخدام ?> في نهاية الملف،
+لأن أي سطر جديد بعده سيعتبر إخراجاً ويؤدي مباشرة لظهور الخطأ.
 </p>
 
 </div>
