@@ -3,27 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حل مشكلة headers already sent</title>
+<title>حل مشكلة headers already sent في PHP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<header>Syntax Dev</header>
+<header>
+<div class="logo">Syntax Dev</div>
+</header>
 
-<div class="container">
+<div class="container article">
 
-<h2>حل مشكلة headers already sent في PHP</h2>
+<h1>حل مشكلة headers already sent في PHP</h1>
 
-<p>يظهر الخطأ عند استخدام session_start أو header بعد طباعة محتوى.</p>
+<p>
+يظهر هذا الخطأ غالباً عند استخدام <b>session_start()</b> أو إعادة التوجيه باستخدام header().
+ويعني أن PHP أرسلت مخرجات إلى المتصفح قبل إرسال ترويسات HTTP.
+</p>
 
-<h3>الحل</h3>
-<pre>
-تأكد عدم وجود مسافات قبل <?php
-ولا تضع ?> في نهاية الملف.
-</pre>
+<h2>سبب المشكلة</h2>
+<p>
+وجود أي مسافة أو سطر فارغ قبل بداية كود PHP أو بعد نهايته.
+</p>
+
+<h2>الحل</h2>
+<pre><code>
+<?php
+session_start();
+</code></pre>
+
+<ul>
+<li>لا تضع مسافات قبل بداية الملف</li>
+<li>لا تستخدم echo قبل header</li>
+<li>لا تضع ?> في نهاية الملف</li>
+</ul>
+
+<h2>حل إضافي</h2>
+<pre><code>
+ob_start();
+</code></pre>
 
 </div>
+
+<footer>
+© 2026 Syntax Dev
+</footer>
 
 </body>
 </html>
