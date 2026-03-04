@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تعلم JavaScript من الصفر للمبتدئين</title>
+
+<title>تعلم JavaScript من الصفر للمبتدئين | شرح عملي خطوة بخطوة</title>
+
+<meta name="description" content="تعلم JavaScript من الصفر للمبتدئين مع شرح الأساسيات وأمثلة عملية على المتغيرات والدوال والتعامل مع DOM بطريقة سهلة وواضحة.">
+
+<meta name="keywords" content="تعلم JavaScript, شرح JavaScript للمبتدئين, JavaScript من الصفر, تعلم js بالعربي, JavaScript DOM">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,33 +18,135 @@
 <img src="../images/logo.svg" alt="Syntax Dev Logo">
 <div class="nav-links">
 <a href="../index.html">الرئيسية</a>
-<a href="#">المقالات</a>
+<a href="../articles.html">المقالات</a>
 <a href="../about.html">من أنا</a>
 </div>
 </div>
 
 <div class="container">
-<h1>تعلم JavaScript من الصفر</h1>
 
-<p>JavaScript هي لغة البرمجة الأساسية للويب وتستخدم لإضافة التفاعل داخل الصفحة.</p>
+<h1>تعلم JavaScript من الصفر للمبتدئين (دليل شامل)</h1>
 
-<h2>أول مثال</h2>
-<pre>
+<p>
+إذا كنت تريد دخول عالم تطوير الويب فلابد من تعلم 
+<strong>JavaScript</strong>،
+فهي لغة البرمجة الأساسية التي تجعل صفحات الويب تفاعلية.
+في هذا الدليل سنبدأ من الصفر تماماً خطوة بخطوة.
+</p>
+
+<hr>
+
+<h2>ما هي JavaScript ؟</h2>
+<p>
+JavaScript هي لغة برمجة تعمل داخل المتصفح،
+وتستخدم لإضافة التفاعل مثل الأزرار والنماذج والتنبيهات وتحديث المحتوى بدون إعادة تحميل الصفحة.
+</p>
+
+<h2>أول مثال في JavaScript</h2>
+
+<pre><code>
 console.log("Hello World");
-</pre>
+</code></pre>
+
+<p>
+يتم عرض النص داخل وحدة التحكم (Console) في المتصفح.
+</p>
+
+<hr>
+
+<h2>المتغيرات في JavaScript</h2>
+
+<pre><code>
+let name = "Ali";
+const age = 25;
+</code></pre>
+
+<p>
+- نستخدم <strong>let</strong> للقيم المتغيرة  
+- نستخدم <strong>const</strong> للقيم الثابتة  
+</p>
+
+<hr>
+
+<h2>الدوال (Functions)</h2>
+
+<pre><code>
+function greet(){
+  console.log("مرحبا بك");
+}
+
+greet();
+</code></pre>
+
+<p>
+الدوال تساعدك على إعادة استخدام الكود وتنظيمه.
+</p>
+
+<hr>
 
 <h2>التعامل مع DOM</h2>
-<pre>
+
+<p>
+DOM هو تمثيل عناصر الصفحة داخل المتصفح.
+يمكنك التحكم به باستخدام JavaScript.
+</p>
+
+<pre><code>
 document.getElementById("btn").onclick = function(){
   alert("تم الضغط");
 }
-</pre>
+</code></pre>
+
+<p>
+الكود أعلاه يجعل الزر يعرض رسالة عند الضغط عليه.
+</p>
 
 <hr>
+
+<h2>لماذا يجب تعلم JavaScript؟</h2>
+
+<ul>
+<li>مطلوبة في جميع وظائف تطوير الويب</li>
+<li>أساس مكتبات مثل React و Vue</li>
+<li>تستخدم في الواجهة الأمامية والخلفية (Node.js)</li>
+<li>لغة سهلة البداية وقوية جداً</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول تعلم JavaScript</h2>
+
+<h3>هل JavaScript صعبة للمبتدئين؟</h3>
+<p>
+لا، يمكن تعلم الأساسيات خلال أسابيع قليلة مع التطبيق العملي.
+</p>
+
+<h3>ما الفرق بين Java و JavaScript؟</h3>
+<p>
+رغم تشابه الاسم، اللغتان مختلفتان تماماً.
+</p>
+
+<h3>كم أحتاج من الوقت لإتقان JavaScript؟</h3>
+<p>
+من 3 إلى 6 أشهر من التطبيق المستمر.
+</p>
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=javascript+tutorial+for+beginners" target="_blank">
-مشاهدة شرح JavaScript
+<p>إذا كنت تفضل التعلم بالمشاهدة:</p>
+
+<a href="https://www.youtube.com/results?search_query=javascript+arabic+full+course" target="_blank">
+مشاهدة كورس JavaScript كامل
 </a>
+
+<hr>
+
+<p>
+بعد تعلم الأساسيات يمكنك قراءة:
+<a href="react-first-project.html">بناء أول مشروع React خطوة بخطوة</a>
+</p>
+
 </div>
 
 <footer>
