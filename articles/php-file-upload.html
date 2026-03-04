@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رفع الملفات في PHP خطوة بخطوة</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="container">
+<h1>رفع الملفات في PHP</h1>
+
+<h2>Form مثال</h2>
+<pre>
+&lt;form method="POST" enctype="multipart/form-data"&gt;
+&lt;input type="file" name="file"&gt;
+&lt;button&gt;Upload&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+
+<h2>المعالجة</h2>
+<pre>
+move_uploaded_file($_FILES['file']['tmp_name'],
+"uploads/file.jpg");
+</pre>
+
+<hr>
+<h3>🎥 شرح بالفيديو</h3>
+<a href="https://www.youtube.com/results?search_query=php+file+upload+tutorial" target="_blank">
+مشاهدة شرح رفع الملفات
+</a>
+</div>
+
+<footer>
+<p>© Syntax Dev — Programming Blog</p>
+</footer>
+
+</body>
+</html>
