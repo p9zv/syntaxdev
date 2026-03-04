@@ -3,30 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح Sessions و Cookies في PHP</title>
+
+<title>شرح Sessions و Cookies في PHP مع الفرق بينهما (دليل شامل)</title>
+
+<meta name="description" content="تعلم شرح Sessions و Cookies في PHP مع أمثلة عملية والفرق بينهما وطريقة استخدام session_start و setcookie في بناء نظام تسجيل دخول آمن.">
+
+<meta name="keywords" content="شرح Session PHP, شرح Cookie PHP, الفرق بين Session و Cookie, session_start, setcookie">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="../articles.html">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
 <div class="container">
-<h1>Sessions و Cookies في PHP</h1>
 
-<h2>Session مثال</h2>
-<pre>
-session_start();
-$_SESSION['user'] = "Ali";
-</pre>
+<h1>شرح Sessions و Cookies في PHP مع الفرق بينهما</h1>
 
-<h2>Cookie مثال</h2>
-<pre>
-setcookie("username","Ali", time()+3600);
-</pre>
+<p>
+يعد فهم <strong>Sessions و Cookies في PHP</strong> أمراً أساسياً لبناء أنظمة تسجيل الدخول
+وحفظ بيانات المستخدم بعد تسجيل الدخول.
+في هذا الدليل سنتعلم كيفية استخدامهما والفرق بينهما بالتفصيل.
+</p>
 
 <hr>
+
+<h2>أولاً: ما هي Session ؟</h2>
+
+<p>
+Session هي وسيلة لتخزين بيانات المستخدم على السيرفر بشكل مؤقت
+حتى يتمكن الموقع من التعرف عليه أثناء تصفحه للصفحات.
+</p>
+
+<h3>مثال عملي على Session</h3>
+
+<pre><code>
+<?php
+session_start();
+
+$_SESSION['user'] = "Ali";
+
+echo $_SESSION['user'];
+?>
+</code></pre>
+
+<p>
+يجب دائماً استخدام <strong>session_start()</strong> في بداية الصفحة قبل أي إخراج.
+</p>
+
+<hr>
+
+<h2>ثانياً: ما هي Cookie ؟</h2>
+
+<p>
+Cookie هي بيانات صغيرة يتم تخزينها في متصفح المستخدم
+ولها مدة زمنية يمكن تحديدها.
+</p>
+
+<h3>مثال عملي على Cookie</h3>
+
+<pre><code>
+<?php
+setcookie("username", "Ali", time() + 3600);
+?>
+</code></pre>
+
+<p>
+هذا المثال ينشئ Cookie صالحة لمدة ساعة واحدة.
+</p>
+
+<hr>
+
+<h2>الفرق بين Session و Cookie</h2>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Session</th>
+<th>Cookie</th>
+</tr>
+<tr>
+<td>تُخزن في السيرفر</td>
+<td>تُخزن في المتصفح</td>
+</tr>
+<tr>
+<td>أكثر أماناً</td>
+<td>أقل أماناً</td>
+</tr>
+<tr>
+<td>تنتهي عند إغلاق الجلسة</td>
+<td>يمكن تحديد مدة انتهاء</td>
+</tr>
+</table>
+
+<hr>
+
+<h2>استخدام Sessions في تسجيل الدخول</h2>
+
+<pre><code>
+<?php
+session_start();
+
+if($email == "admin@test.com"){
+   $_SESSION['logged_in'] = true;
+}
+?>
+</code></pre>
+
+<p>
+ثم في الصفحات الأخرى:
+</p>
+
+<pre><code>
+<?php
+session_start();
+
+if(!isset($_SESSION['logged_in'])){
+   header("Location: login.php");
+   exit();
+}
+?>
+</code></pre>
+
+<hr>
+
+<h2>حذف Session</h2>
+
+<pre><code>
+session_start();
+session_destroy();
+</code></pre>
+
+<hr>
+
+<h2>حذف Cookie</h2>
+
+<pre><code>
+setcookie("username", "", time() - 3600);
+</code></pre>
+
+<hr>
+
+<h2>أخطاء شائعة</h2>
+
+<ul>
+<li>نسيان session_start()</li>
+<li>استخدام echo قبل setcookie()</li>
+<li>عدم استخدام exit() بعد header()</li>
+</ul>
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=php+sessions+and+cookies" target="_blank">
-مشاهدة شرح Sessions و Cookies
+
+<a href="https://www.youtube.com/results?search_query=php+sessions+and+cookies+arabic" target="_blank">
+مشاهدة شرح Sessions و Cookies في PHP
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="file-upload.html">رفع الملفات في PHP</a> |
+<a href="headers.html">حل مشكلة headers already sent</a>
+</p>
+
 </div>
 
 <footer>
