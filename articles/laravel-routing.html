@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شرح Laravel Routing خطوة بخطوة</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="#">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
+<div class="container">
+
+<h1>شرح Laravel Routing خطوة بخطوة</h1>
+
+<p>
+الـ Routing في Laravel هو المسؤول عن ربط الرابط (URL) بالوظيفة المناسبة داخل التطبيق.
+</p>
+
+<h2>أين يوجد ملف Routes ؟</h2>
+
+<p>
+ستجده داخل:
+</p>
+
+<pre>
+routes/web.php
+</pre>
+
+<h2>مثال بسيط</h2>
+
+<pre>
+Route::get('/home', function () {
+    return view('home');
+});
+</pre>
+
+<p>
+عند زيارة /home سيتم عرض صفحة home.
+</p>
+
+<h2>تمرير متغير داخل الرابط</h2>
+
+<pre>
+Route::get('/user/{id}', function ($id) {
+    return "User ID: " . $id;
+});
+</pre>
+
+<p>
+الآن يمكنك استقبال متغير من الرابط.
+</p>
+
+<hr>
+
+<h3>🎥 شرح بالفيديو</h3>
+<p>
+يمكنك مشاهدة شرح عملي من هذا الفيديو:
+</p>
+
+<a href="https://www.youtube.com/results?search_query=laravel+routing+tutorial" target="_blank">
+مشاهدة شرح Laravel Routing على يوتيوب
+</a>
+
+</div>
+
+<footer>
+<p>© Syntax Dev — Programming Blog</p>
+</footer>
+
+</body>
+</html>
