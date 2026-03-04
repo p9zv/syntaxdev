@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح Laravel Middleware</title>
+
+<title>شرح Laravel Middleware خطوة بخطوة | مثال عملي كامل</title>
+
+<meta name="description" content="شرح Laravel Middleware بالتفصيل مع مثال عملي لإنشاء Middleware مخصص وكيفية تسجيله واستخدامه في routes لحماية الصفحات.">
+
+<meta name="keywords" content="Laravel Middleware شرح, create middleware laravel, laravel middleware example, حماية الصفحات laravel">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -13,42 +19,160 @@
 <img src="../images/logo.svg" alt="Syntax Dev Logo">
 <div class="nav-links">
 <a href="../index.html">الرئيسية</a>
-<a href="#">المقالات</a>
+<a href="../articles.html">المقالات</a>
 <a href="../about.html">من أنا</a>
 </div>
 </div>
 
 <div class="container">
 
-<h1>شرح Laravel Middleware</h1>
+<h1>شرح Laravel Middleware خطوة بخطوة (مع مثال عملي)</h1>
 
 <p>
-الـ Middleware في Laravel يعمل كطبقة فلترة قبل وصول الطلب إلى الكنترولر.
+الـ <strong>Middleware في Laravel</strong> يعمل كطبقة فلترة تمر من خلالها الطلبات (Requests)
+قبل وصولها إلى الـ Controller.
+يستخدم عادةً للتحقق من تسجيل الدخول، الصلاحيات، أو أي شرط قبل عرض الصفحة.
 </p>
 
-<h2>مثال عملي</h2>
+<hr>
 
-<pre>
+<h2>ما هو Middleware في Laravel ؟</h2>
+
+<p>
+يمكن اعتباره حارساً يقف بين المستخدم والتطبيق.
+عند إرسال طلب إلى Route معين، يتم تنفيذ الـ Middleware أولاً،
+فإذا تحقق الشرط يسمح بمرور الطلب، وإذا لم يتحقق يتم منعه أو إعادة توجيهه.
+</p>
+
+<hr>
+
+<h2>إنشاء Middleware جديد</h2>
+
+<pre><code>
 php artisan make:middleware CheckUser
-</pre>
+</code></pre>
 
 <p>
-بعد إنشائه يمكنك استخدامه داخل routes:
+سيتم إنشاء الملف داخل:
 </p>
 
-<pre>
+<pre><code>
+app/Http/Middleware/CheckUser.php
+</code></pre>
+
+<hr>
+
+<h2>كتابة منطق التحقق داخل Middleware</h2>
+
+<pre><code>
+public function handle($request, Closure $next)
+{
+    if(!auth()->check()){
+        return redirect('/login');
+    }
+
+    return $next($request);
+}
+</code></pre>
+
+<p>
+إذا لم يكن المستخدم مسجلاً سيتم تحويله إلى صفحة تسجيل الدخول.
+</p>
+
+<hr>
+
+<h2>تسجيل Middleware داخل Kernel</h2>
+
+<p>
+افتح الملف:
+</p>
+
+<pre><code>
+app/Http/Kernel.php
+</code></pre>
+
+<p>
+وأضف داخل $routeMiddleware:
+</p>
+
+<pre><code>
+'checkuser' => \App\Http\Middleware\CheckUser::class,
+</code></pre>
+
+<hr>
+
+<h2>استخدام Middleware داخل Route</h2>
+
+<pre><code>
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('checkuser');
-</pre>
+</code></pre>
+
+<p>
+الآن لن يتمكن أي مستخدم غير مسجل من الدخول إلى dashboard.
+</p>
+
+<hr>
+
+<h2>استخدام Middleware لمجموعة Routes</h2>
+
+<pre><code>
+Route::middleware(['checkuser'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+});
+</code></pre>
+
+<hr>
+
+<h2>استخدام Middleware الجاهز في Laravel</h2>
+
+<p>
+Laravel يحتوي على Middleware جاهز مثل:
+</p>
+
+<ul>
+<li>auth</li>
+<li>verified</li>
+<li>throttle</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول Laravel Middleware</h2>
+
+<h3>ما الفرق بين Middleware و Controller؟</h3>
+<p>
+Middleware ينفذ قبل الوصول إلى Controller ويستخدم للتحقق أو الفلترة.
+</p>
+
+<h3>هل يمكن استخدام أكثر من Middleware لنفس Route؟</h3>
+<p>
+نعم، يمكن تمرير مصفوفة تحتوي على عدة Middleware.
+</p>
+
+<h3>هل Middleware يؤثر على الأداء؟</h3>
+<p>
+بشكل بسيط جداً، لكنه ضروري للحماية وتنظيم التطبيق.
+</p>
 
 <hr>
 
 <h3>🎥 شرح بالفيديو</h3>
 
-<a href="https://www.youtube.com/results?search_query=laravel+middleware+tutorial" target="_blank">
-مشاهدة شرح Laravel Middleware
+<a href="https://www.youtube.com/results?search_query=laravel+middleware+arabic+tutorial" target="_blank">
+مشاهدة شرح Laravel Middleware كامل
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="laravel-validation.html">شرح Laravel Validation</a> |
+<a href="419.html">حل مشكلة 419 Page Expired</a>
+</p>
 
 </div>
 
