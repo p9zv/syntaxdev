@@ -3,32 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تعلم Git و GitHub للمبتدئين</title>
+
+<title>تعلم Git و GitHub للمبتدئين | شرح عملي خطوة بخطوة</title>
+
+<meta name="description" content="تعلم Git و GitHub للمبتدئين من الصفر مع شرح الأوامر الأساسية وكيفية رفع مشروعك إلى GitHub خطوة بخطوة بطريقة عملية سهلة.">
+
+<meta name="keywords" content="تعلم Git, شرح Git للمبتدئين, GitHub شرح, git commands, رفع مشروع على github">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
 <div class="container">
-<h1>تعلم Git للمبتدئين</h1>
 
-<h2>أوامر أساسية</h2>
-<pre>
-git init
-git add .
-git commit -m "first commit"
-</pre>
+<h1>تعلم Git و GitHub للمبتدئين (دليل عملي كامل)</h1>
 
-<h2>رفع المشروع</h2>
-<pre>
-git remote add origin URL
-git push -u origin main
-</pre>
+<p>
+إذا كنت تريد إدارة مشاريعك البرمجية باحترافية فلابد من تعلم 
+<strong>Git</strong> و <strong>GitHub</strong>.
+في هذا الدليل سنشرح الأساسيات خطوة بخطوة بطريقة بسيطة وعملية.
+</p>
+
+<h2>ما هو Git ؟</h2>
+<p>
+Git هو نظام لإدارة الإصدارات (Version Control System) 
+يسمح لك بحفظ التعديلات على مشروعك والرجوع لأي نسخة سابقة.
+</p>
+
+<h2>ما هو GitHub ؟</h2>
+<p>
+GitHub هو منصة لاستضافة مشاريع Git على الإنترنت 
+ومشاركة الكود مع الآخرين.
+</p>
 
 <hr>
+
+<h2>أهم أوامر Git الأساسية</h2>
+
+<h3>1- إنشاء مستودع جديد</h3>
+<pre><code>
+git init
+</code></pre>
+
+<h3>2- إضافة الملفات للتتبع</h3>
+<pre><code>
+git add .
+</code></pre>
+
+<h3>3- حفظ التعديلات (Commit)</h3>
+<pre><code>
+git commit -m "first commit"
+</code></pre>
+
+<h3>4- معرفة حالة المشروع</h3>
+<pre><code>
+git status
+</code></pre>
+
+<h3>5- مشاهدة السجل</h3>
+<pre><code>
+git log
+</code></pre>
+
+<hr>
+
+<h2>طريقة رفع مشروعك إلى GitHub</h2>
+
+<h3>1- إنشاء Repository جديد في GitHub</h3>
+<p>قم بإنشاء مستودع جديد من حسابك.</p>
+
+<h3>2- ربط المشروع المحلي بالمستودع</h3>
+
+<pre><code>
+git remote add origin URL
+</code></pre>
+
+<h3>3- رفع المشروع</h3>
+
+<pre><code>
+git push -u origin main
+</code></pre>
+
+<hr>
+
+<h2>أخطاء شائعة قد تواجهك</h2>
+
+<ul>
+<li>رفض الرفع بسبب عدم وجود commit</li>
+<li>خطأ في اسم الفرع (main / master)</li>
+<li>مشاكل في المصادقة (Authentication)</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول Git</h2>
+
+<h3>هل Git صعب للمبتدئين؟</h3>
+<p>لا، الأساسيات بسيطة جداً ويمكن تعلمها خلال يوم واحد.</p>
+
+<h3>ما الفرق بين Git و GitHub؟</h3>
+<p>Git أداة محلية لإدارة الإصدارات، أما GitHub فهو منصة استضافة.</p>
+
+<h3>هل يمكن استخدام Git بدون GitHub؟</h3>
+<p>نعم، يمكنك استخدام Git محلياً بدون رفع المشروع إلى الإنترنت.</p>
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=git+and+github+tutorial" target="_blank">
-مشاهدة شرح Git
+<p>
+إذا كنت تفضل التعلم بالمشاهدة:
+</p>
+
+<a href="https://www.youtube.com/results?search_query=git+github+arabic+tutorial" target="_blank">
+مشاهدة شرح Git و GitHub كامل
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="laravel-validation.html">حل مشكلة Laravel Validation Required</a>
+</p>
+
 </div>
 
 <footer>
