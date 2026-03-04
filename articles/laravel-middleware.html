@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شرح Laravel Middleware</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="#">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
+<div class="container">
+
+<h1>شرح Laravel Middleware</h1>
+
+<p>
+الـ Middleware في Laravel يعمل كطبقة فلترة قبل وصول الطلب إلى الكنترولر.
+</p>
+
+<h2>مثال عملي</h2>
+
+<pre>
+php artisan make:middleware CheckUser
+</pre>
+
+<p>
+بعد إنشائه يمكنك استخدامه داخل routes:
+</p>
+
+<pre>
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('checkuser');
+</pre>
+
+<hr>
+
+<h3>🎥 شرح بالفيديو</h3>
+
+<a href="https://www.youtube.com/results?search_query=laravel+middleware+tutorial" target="_blank">
+مشاهدة شرح Laravel Middleware
+</a>
+
+</div>
+
+<footer>
+<p>© Syntax Dev — Programming Blog</p>
+</footer>
+
+</body>
+</html>
