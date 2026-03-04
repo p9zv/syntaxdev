@@ -3,33 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رفع الملفات في PHP خطوة بخطوة</title>
+
+<title>رفع الملفات في PHP خطوة بخطوة | شرح File Upload مع مثال عملي</title>
+
+<meta name="description" content="تعلم رفع الملفات في PHP خطوة بخطوة مع شرح $_FILES و move_uploaded_file وحماية السيرفر من رفع الملفات الضارة مع مثال عملي كامل.">
+
+<meta name="keywords" content="رفع الملفات في PHP, PHP file upload, شرح $_FILES, move_uploaded_file, حماية رفع الملفات PHP">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="../articles.html">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
 <div class="container">
-<h1>رفع الملفات في PHP</h1>
 
-<h2>Form مثال</h2>
-<pre>
-&lt;form method="POST" enctype="multipart/form-data"&gt;
-&lt;input type="file" name="file"&gt;
-&lt;button&gt;Upload&lt;/button&gt;
-&lt;/form&gt;
-</pre>
+<h1>رفع الملفات في PHP خطوة بخطوة (File Upload Tutorial)</h1>
 
-<h2>المعالجة</h2>
-<pre>
-move_uploaded_file($_FILES['file']['tmp_name'],
-"uploads/file.jpg");
-</pre>
+<p>
+يعد <strong>رفع الملفات في PHP</strong> من أهم المهارات لأي مطور ويب،
+سواء كنت تبني نظام تسجيل مستخدمين أو لوحة تحكم.
+في هذا الدليل سنتعلم الطريقة الصحيحة مع الحماية من الأخطاء الشائعة.
+</p>
 
 <hr>
+
+<h2>أولاً: إنشاء نموذج رفع ملف (Form)</h2>
+
+<p>يجب استخدام enctype="multipart/form-data" داخل الفورم:</p>
+
+<pre><code>
+<form method="POST" enctype="multipart/form-data">
+  <input type="file" name="file">
+  <button type="submit">Upload</button>
+</form>
+</code></pre>
+
+<hr>
+
+<h2>ثانياً: استقبال الملف في PHP</h2>
+
+<pre><code>
+<?php
+
+if(isset($_FILES['file'])){
+
+  $fileName = $_FILES['file']['name'];
+  $tmpName  = $_FILES['file']['tmp_name'];
+
+  move_uploaded_file($tmpName, "uploads/" . $fileName);
+
+  echo "File uploaded successfully";
+}
+?>
+</code></pre>
+
+<hr>
+
+<h2>شرح مصفوفة $_FILES</h2>
+
+<ul>
+<li><strong>name</strong> : اسم الملف</li>
+<li><strong>tmp_name</strong> : المسار المؤقت</li>
+<li><strong>size</strong> : حجم الملف</li>
+<li><strong>type</strong> : نوع الملف</li>
+<li><strong>error</strong> : كود الخطأ إن وجد</li>
+</ul>
+
+<hr>
+
+<h2>التحقق من نوع الملف (مهم جداً)</h2>
+
+<pre><code>
+$allowed = ['jpg','png','jpeg'];
+$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+if(in_array($extension, $allowed)){
+   move_uploaded_file($tmpName, "uploads/" . $fileName);
+}else{
+   echo "نوع الملف غير مسموح";
+}
+</code></pre>
+
+<hr>
+
+<h2>تحديد حجم الملف الأقصى</h2>
+
+<pre><code>
+if($_FILES['file']['size'] > 2000000){
+   echo "حجم الملف كبير جداً";
+}
+</code></pre>
+
+<hr>
+
+<h2>أفضل ممارسات أمان عند رفع الملفات</h2>
+
+<ul>
+<li>لا تسمح برفع ملفات PHP</li>
+<li>غيّر اسم الملف لتجنب التكرار</li>
+<li>تحقق من الامتداد والحجم</li>
+<li>احفظ الملفات خارج public إن أمكن</li>
+</ul>
+
+<hr>
+
+<h2>أشهر مشاكل رفع الملفات في PHP</h2>
+
+<h3>1- الملف لا يتم رفعه</h3>
+تأكد من:
+<ul>
+<li>وجود مجلد uploads</li>
+<li>إعطاء صلاحية 755 أو 775</li>
+<li>تعديل upload_max_filesize في php.ini</li>
+</ul>
+
+<h3>2- خطأ move_uploaded_file</h3>
+غالباً بسبب مسار خاطئ أو صلاحيات غير كافية.
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=php+file+upload+tutorial" target="_blank">
-مشاهدة شرح رفع الملفات
+
+<a href="https://www.youtube.com/results?search_query=php+file+upload+arabic+tutorial" target="_blank">
+مشاهدة شرح رفع الملفات في PHP
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="headers.html">حل مشكلة headers already sent في PHP</a>
+</p>
+
 </div>
 
 <footer>
