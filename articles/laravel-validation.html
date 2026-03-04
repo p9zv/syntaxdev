@@ -3,16 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>حل مشكلة Laravel Validation Required لا يعمل | شرح عملي</title>
-<meta name="description" content="شرح حل مشكلة Laravel Validation Required لا يعمل مع مثال كود عملي وتوضيح سبب الخطأ وطريقة تجنبه مستقبلاً.">
+
+<meta name="description" content="تعرف على سبب مشكلة Laravel Validation Required لا يعمل مع مثال كود عملي وشرح تفصيلي للحل وطريقة تجنب الخطأ مستقبلاً.">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <div class="container">
+
 <h1>حل مشكلة Laravel Validation Required لا يعمل في Laravel</h1>
 
-<h2>مثال</h2>
+<p>
+تعتبر مشكلة <strong>Laravel Validation Required لا يعمل</strong> من أكثر المشاكل التي تواجه المطورين عند التحقق من صحة البيانات في النماذج (Forms).
+في هذا المقال سنشرح سبب المشكلة الحقيقي، ومتى تظهر، وكيف يمكن إصلاحها بطريقة صحيحة.
+</p>
+
+<hr>
+
+<h2>متى تظهر المشكلة؟</h2>
+
+<p>
+تظهر هذه المشكلة غالبًا عند إرسال نموذج (Form) ولا يتم تنفيذ قواعد التحقق (Validation) بشكل صحيح،
+رغم أنك كتبت قاعدة <code>required</code>.
+</p>
+
+<hr>
+
+<h2>مثال على الكود</h2>
+
 <pre>
 $request->validate([
  'name' => 'required|min:3',
@@ -21,10 +42,86 @@ $request->validate([
 </pre>
 
 <hr>
-<h3>🎥 شرح بالفيديو</h3>
+
+<h2>سبب المشكلة الحقيقي</h2>
+
+<p>
+في أغلب الحالات يكون السبب أحد الأمور التالية:
+</p>
+
+<ul>
+<li>عدم وجود <strong>name attribute</strong> في الحقول داخل النموذج.</li>
+<li>نسيان إضافة <strong>@csrf</strong> داخل الفورم.</li>
+<li>إرسال البيانات بطريقة GET بدل POST.</li>
+<li>خطأ في مسار Route.</li>
+</ul>
+
+<hr>
+
+<h2>الحل خطوة بخطوة</h2>
+
+<h3>1️⃣ تأكد من وجود name في الحقول</h3>
+
+<pre>
+<input type="text" name="name">
+<input type="email" name="email">
+</pre>
+
+<h3>2️⃣ تأكد من وجود CSRF Token</h3>
+
+<pre>
+<form method="POST">
+ @csrf
+</form>
+</pre>
+
+<h3>3️⃣ تأكد أن الفورم يستخدم POST</h3>
+
+<pre>
+<form method="POST" action="/store">
+</form>
+</pre>
+
+<hr>
+
+<h2>كيف تتجنب المشكلة مستقبلاً؟</h2>
+
+<p>
+يفضل استخدام <strong>Form Request Validation</strong> بدل كتابة التحقق داخل الكنترولر،
+لأنه يجعل الكود أنظف وأسهل في الصيانة.
+</p>
+
+<hr>
+
+<h2>مقالات قد تهمك</h2>
+
+<ul>
+<li><a href="419.html">حل مشكلة 419 Page Expired في Laravel</a></li>
+<li><a href="laravel-routing.html">شرح Laravel Routing خطوة بخطوة</a></li>
+</ul>
+
+<hr>
+
+<h2>الأسئلة الشائعة (FAQ)</h2>
+
+<h3>لماذا لا يعمل required في Laravel؟</h3>
+<p>غالبًا بسبب عدم إرسال البيانات أو خطأ في إعداد النموذج.</p>
+
+<h3>هل Laravel Validation يعمل تلقائيًا؟</h3>
+<p>نعم، لكن يجب أن يكون الفورم مضبوطًا بشكل صحيح.</p>
+
+<hr>
+
+<h3>🎥 شرح Laravel Validation بالفيديو</h3>
+
+<p>
+يمكنك مشاهدة شرح عملي مفصل عن Laravel Validation من خلال البحث في يوتيوب عبر الرابط التالي:
+</p>
+
 <a href="https://www.youtube.com/results?search_query=laravel+validation+tutorial" target="_blank">
 مشاهدة شرح Laravel Validation
 </a>
+
 </div>
 
 <footer>
