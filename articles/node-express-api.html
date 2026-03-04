@@ -3,37 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إنشاء REST API باستخدام Node و Express</title>
+
+<title>إنشاء REST API باستخدام Node.js و Express | شرح عملي خطوة بخطوة</title>
+
+<meta name="description" content="تعلم إنشاء REST API باستخدام Node.js و Express من الصفر مع شرح تثبيت Express وبناء Routes واستخدام JSON واختبار API خطوة بخطوة.">
+
+<meta name="keywords" content="REST API Node, Express API شرح, إنشاء API باستخدام Node.js, express tutorial arabic, node js backend">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="../articles.html">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
 <div class="container">
-<h1>إنشاء REST API باستخدام Express</h1>
 
-<h2>تثبيت Express</h2>
-<pre>
+<h1>إنشاء REST API باستخدام Node.js و Express (دليل عملي)</h1>
+
+<p>
+إذا كنت تريد بناء Backend حديث فلابد من تعلم 
+<strong>إنشاء REST API باستخدام Node.js و Express</strong>.
+في هذا الدليل سنبدأ من الصفر حتى تشغيل API بسيط.
+</p>
+
+<hr>
+
+<h2>ما هو REST API ؟</h2>
+
+<p>
+REST API هو أسلوب لبناء خدمات ويب تعتمد على بروتوكول HTTP
+وتستخدم Methods مثل GET و POST و PUT و DELETE
+للتعامل مع البيانات.
+</p>
+
+<hr>
+
+<h2>الخطوة 1: إنشاء مشروع Node.js</h2>
+
+<pre><code>
 npm init -y
-npm install express
-</pre>
+</code></pre>
 
-<h2>مثال API</h2>
-<pre>
+<hr>
+
+<h2>الخطوة 2: تثبيت Express</h2>
+
+<pre><code>
+npm install express
+</code></pre>
+
+<hr>
+
+<h2>الخطوة 3: إنشاء ملف index.js</h2>
+
+<pre><code>
 const express = require("express");
 const app = express();
 
-app.get("/", (req,res)=>{
- res.send("Hello API");
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello API");
 });
 
-app.listen(3000);
-</pre>
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+</code></pre>
+
+<p>
+الآن افتح المتصفح وادخل:
+</p>
+
+<pre><code>
+http://localhost:3000
+</code></pre>
 
 <hr>
+
+<h2>إنشاء Route باستخدام GET</h2>
+
+<pre><code>
+app.get("/users", (req, res) => {
+  res.json([
+    { id: 1, name: "Ali" },
+    { id: 2, name: "Sara" }
+  ]);
+});
+</code></pre>
+
+<hr>
+
+<h2>إنشاء Route باستخدام POST</h2>
+
+<pre><code>
+app.post("/users", (req, res) => {
+  const user = req.body;
+  res.json({
+    message: "User created",
+    data: user
+  });
+});
+</code></pre>
+
+<hr>
+
+<h2>اختبار API باستخدام Postman</h2>
+
+<p>
+يمكنك استخدام أداة Postman لإرسال طلبات GET و POST واختبار الـ API بسهولة.
+</p>
+
+<hr>
+
+<h2>أفضل ممارسات بناء REST API</h2>
+
+<ul>
+<li>استخدم express.json() لقراءة البيانات</li>
+<li>افصل Routes في ملفات مستقلة عند كبر المشروع</li>
+<li>استخدم Status Codes مناسبة (200 - 404 - 500)</li>
+<li>تحقق من صحة البيانات قبل الحفظ</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول Node و Express</h2>
+
+<h3>هل Express مناسب للمشاريع الكبيرة؟</h3>
+<p>
+نعم، لكنه يحتاج تنظيم جيد وفصل الملفات.
+</p>
+
+<h3>ما الفرق بين REST و GraphQL؟</h3>
+<p>
+REST يعتمد على عدة Endpoints،
+بينما GraphQL يستخدم Endpoint واحد ويحدد البيانات المطلوبة.
+</p>
+
+<h3>هل Node.js سريع في بناء APIs؟</h3>
+<p>
+نعم، Node.js معروف بأدائه الجيد خاصة في التطبيقات ذات الطلبات المتزامنة.
+</p>
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=node+express+api+tutorial" target="_blank">
-مشاهدة شرح Express API
+
+<a href="https://www.youtube.com/results?search_query=node+express+api+arabic+tutorial" target="_blank">
+مشاهدة شرح إنشاء REST API باستخدام Express
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="javascript-basics.html">تعلم JavaScript من الصفر</a> |
+<a href="react-first-project.html">بناء أول مشروع React</a>
+</p>
+
 </div>
 
 <footer>
