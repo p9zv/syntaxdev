@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح أهم ميزات ES6 في JavaScript</title>
+
+<title>شرح أهم ميزات ES6 في JavaScript | دليل عملي مع أمثلة</title>
+
+<meta name="description" content="تعرف على أهم ميزات ES6 في JavaScript مثل Arrow Functions و let و const و Destructuring مع أمثلة عملية مبسطة للمبتدئين.">
+
+<meta name="keywords" content="ES6 شرح, ميزات ES6, Arrow Functions, let vs const, JavaScript ES6 tutorial">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,30 +18,136 @@
 <img src="../images/logo.svg" alt="Syntax Dev Logo">
 <div class="nav-links">
 <a href="../index.html">الرئيسية</a>
-<a href="#">المقالات</a>
+<a href="../articles.html">المقالات</a>
 <a href="../about.html">من أنا</a>
 </div>
 </div>
 
 <div class="container">
-<h1>أهم ميزات ES6</h1>
 
-<h2>Arrow Functions</h2>
-<pre>
-const sum = (a,b) => a+b;
-</pre>
+<h1>شرح أهم ميزات ES6 في JavaScript (مع أمثلة عملية)</h1>
 
-<h2>Let و Const</h2>
-<pre>
-let name = "Ali";
-const age = 25;
-</pre>
+<p>
+إصدار ES6 (المعروف أيضاً باسم ECMAScript 2015) 
+قدم تحديثات قوية جعلت كتابة كود JavaScript أسهل وأكثر تنظيماً.
+في هذا المقال سنشرح أهم الميزات مع أمثلة بسيطة.
+</p>
 
 <hr>
+
+<h2>1- Arrow Functions</h2>
+
+<p>
+توفر طريقة مختصرة لكتابة الدوال.
+</p>
+
+<pre><code>
+const sum = (a, b) => a + b;
+</code></pre>
+
+<p>
+تتميز Arrow Functions بأنها لا تنشئ this خاص بها،
+بل ترثه من النطاق الخارجي.
+</p>
+
+<hr>
+
+<h2>2- let و const</h2>
+
+<p>
+في ES6 تم تقديم كلمتي let و const بدلاً من var.
+</p>
+
+<pre><code>
+let name = "Ali";
+const age = 25;
+</code></pre>
+
+<ul>
+<li><strong>let</strong> تستخدم للقيم التي يمكن تغييرها</li>
+<li><strong>const</strong> تستخدم للقيم الثابتة</li>
+</ul>
+
+<hr>
+
+<h2>3- Template Literals</h2>
+
+<p>
+تسمح بكتابة نصوص متعددة الأسطر وإدخال المتغيرات داخل النص.
+</p>
+
+<pre><code>
+let name = "Ali";
+console.log(`مرحبا ${name}`);
+</code></pre>
+
+<hr>
+
+<h2>4- Destructuring</h2>
+
+<p>
+تسمح باستخراج القيم من المصفوفات أو الكائنات بسهولة.
+</p>
+
+<pre><code>
+const user = {name: "Ali", age: 25};
+const {name, age} = user;
+</code></pre>
+
+<hr>
+
+<h2>5- Default Parameters</h2>
+
+<pre><code>
+function greet(name = "Guest"){
+  console.log(name);
+}
+</code></pre>
+
+<hr>
+
+<h2>لماذا تعتبر ES6 مهمة؟</h2>
+
+<ul>
+<li>تنظيم أفضل للكود</li>
+<li>اختصار في الكتابة</li>
+<li>سهولة قراءة الكود</li>
+<li>تعتمد عليها مكتبات مثل React</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول ES6</h2>
+
+<h3>هل ES6 مدعومة في جميع المتصفحات؟</h3>
+<p>
+نعم، جميع المتصفحات الحديثة تدعم ميزات ES6.
+</p>
+
+<h3>هل يجب تعلم ES6 قبل React؟</h3>
+<p>
+نعم، لأن React تعتمد بشكل كبير على Arrow Functions و Destructuring.
+</p>
+
+<h3>ما الفرق بين var و let؟</h3>
+<p>
+let تحترم نطاق الكتلة (Block Scope) بينما var لا تفعل ذلك.
+</p>
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=es6+tutorial" target="_blank">
-مشاهدة شرح ES6
+<a href="https://www.youtube.com/results?search_query=es6+arabic+tutorial" target="_blank">
+مشاهدة شرح ES6 كامل
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="javascript-basics.html">تعلم JavaScript من الصفر للمبتدئين</a>
+</p>
+
 </div>
 
 <footer>
