@@ -3,30 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح SQL للمبتدئين</title>
+
+<title>شرح SQL للمبتدئين | تعلم أوامر SQL الأساسية خطوة بخطوة</title>
+
+<meta name="description" content="تعلم SQL من الصفر للمبتدئين مع شرح أوامر SELECT و INSERT و UPDATE و DELETE مع أمثلة عملية على قواعد البيانات.">
+
+<meta name="keywords" content="تعلم SQL, شرح SQL للمبتدئين, SELECT شرح, INSERT شرح, أوامر SQL الأساسية">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="../articles.html">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
+
 <div class="container">
-<h1>تعلم SQL من الصفر</h1>
 
-<h2>SELECT</h2>
-<pre>
-SELECT * FROM users;
-</pre>
+<h1>شرح SQL للمبتدئين (تعلم من الصفر)</h1>
 
-<h2>INSERT</h2>
-<pre>
-INSERT INTO users(name,email)
-VALUES('Ali','ali@mail.com');
-</pre>
+<p>
+إذا كنت تريد دخول عالم البرمجة أو تطوير المواقع،
+فإن تعلم <strong>SQL</strong> أمر أساسي للتعامل مع قواعد البيانات.
+في هذا الدليل سنتعلم أهم أوامر SQL خطوة بخطوة.
+</p>
 
 <hr>
+
+<h2>ما هي SQL ؟</h2>
+
+<p>
+SQL اختصار لـ Structured Query Language،
+وهي لغة تستخدم للتعامل مع قواعد البيانات مثل MySQL و PostgreSQL.
+</p>
+
+<hr>
+
+<h2>أمر SELECT (جلب البيانات)</h2>
+
+<p>يستخدم لجلب البيانات من جدول:</p>
+
+<pre><code>
+SELECT * FROM users;
+</code></pre>
+
+<p>جلب أعمدة محددة:</p>
+
+<pre><code>
+SELECT name, email FROM users;
+</code></pre>
+
+<p>استخدام شرط WHERE:</p>
+
+<pre><code>
+SELECT * FROM users WHERE id = 1;
+</code></pre>
+
+<hr>
+
+<h2>أمر INSERT (إضافة بيانات)</h2>
+
+<pre><code>
+INSERT INTO users(name, email)
+VALUES('Ali', 'ali@mail.com');
+</code></pre>
+
+<hr>
+
+<h2>أمر UPDATE (تعديل بيانات)</h2>
+
+<pre><code>
+UPDATE users
+SET name = 'Ahmed'
+WHERE id = 1;
+</code></pre>
+
+<hr>
+
+<h2>أمر DELETE (حذف بيانات)</h2>
+
+<pre><code>
+DELETE FROM users
+WHERE id = 1;
+</code></pre>
+
+<hr>
+
+<h2>استخدام ORDER BY و LIMIT</h2>
+
+<pre><code>
+SELECT * FROM users
+ORDER BY id DESC
+LIMIT 5;
+</code></pre>
+
+<hr>
+
+<h2>إنشاء جدول جديد</h2>
+
+<pre><code>
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100)
+);
+</code></pre>
+
+<hr>
+
+<h2>أفضل ممارسات عند استخدام SQL</h2>
+
+<ul>
+<li>استخدم WHERE لتجنب تعديل كل البيانات</li>
+<li>لا تستخدم DELETE بدون شرط</li>
+<li>احمِ تطبيقك من SQL Injection</li>
+<li>استخدم الفهارس (Indexes) لتحسين الأداء</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول SQL</h2>
+
+<h3>هل SQL صعبة للمبتدئين؟</h3>
+لا، فهي لغة بسيطة وتعتمد على أوامر واضحة.
+
+<h3>ما الفرق بين SQL و MySQL؟</h3>
+SQL هي لغة، أما MySQL فهو نظام إدارة قواعد بيانات يستخدم SQL.
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=sql+tutorial+for+beginners" target="_blank">
-مشاهدة شرح SQL
+
+<a href="https://www.youtube.com/results?search_query=sql+tutorial+for+beginners+arabic" target="_blank">
+مشاهدة شرح SQL للمبتدئين
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="login-system.html">نظام تسجيل دخول PHP</a> |
+<a href="sql-injection.html">حماية الموقع من SQL Injection</a>
+</p>
+
 </div>
 
 <footer>
