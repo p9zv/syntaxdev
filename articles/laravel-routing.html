@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح Laravel Routing خطوة بخطوة</title>
+
+<title>شرح Laravel Routing خطوة بخطوة | دليل عملي كامل</title>
+
+<meta name="description" content="شرح Laravel Routing خطوة بخطوة مع أمثلة عملية على Route::get و Route Parameters و Route Groups وكيفية تنظيم ملف routes/web.php في Laravel.">
+
+<meta name="keywords" content="Laravel Routing شرح, routes web.php laravel, route parameters laravel, laravel route example">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -13,63 +19,188 @@
 <img src="../images/logo.svg" alt="Syntax Dev Logo">
 <div class="nav-links">
 <a href="../index.html">الرئيسية</a>
-<a href="#">المقالات</a>
+<a href="../articles.html">المقالات</a>
 <a href="../about.html">من أنا</a>
 </div>
 </div>
 
 <div class="container">
 
-<h1>شرح Laravel Routing خطوة بخطوة</h1>
+<h1>شرح Laravel Routing خطوة بخطوة (مع أمثلة عملية)</h1>
 
 <p>
-الـ Routing في Laravel هو المسؤول عن ربط الرابط (URL) بالوظيفة المناسبة داخل التطبيق.
+الـ <strong>Routing في Laravel</strong> هو المسؤول عن ربط الرابط (URL)
+بالوظيفة المناسبة داخل التطبيق سواء كانت Closure أو Controller.
+بدون Routing لن يستطيع Laravel معرفة أي كود يجب تنفيذه عند زيارة رابط معين.
 </p>
 
-<h2>أين يوجد ملف Routes ؟</h2>
+<hr>
+
+<h2>أين يوجد ملف Routes في Laravel؟</h2>
 
 <p>
-ستجده داخل:
+ستجد ملفات التوجيه داخل مجلد:
 </p>
 
-<pre>
+<pre><code>
 routes/web.php
-</pre>
+</code></pre>
 
-<h2>مثال بسيط</h2>
+<p>
+هذا الملف مسؤول عن Routes الخاصة بالويب.
+</p>
 
-<pre>
+<hr>
+
+<h2>مثال بسيط على Route</h2>
+
+<pre><code>
 Route::get('/home', function () {
     return view('home');
 });
-</pre>
+</code></pre>
 
 <p>
-عند زيارة /home سيتم عرض صفحة home.
+عند زيارة الرابط:
 </p>
 
-<h2>تمرير متغير داخل الرابط</h2>
+<pre><code>
+/home
+</code></pre>
 
-<pre>
+<p>
+سيتم عرض صفحة home.
+</p>
+
+<hr>
+
+<h2>أنواع الـ Routes في Laravel</h2>
+
+<ul>
+<li>Route::get()</li>
+<li>Route::post()</li>
+<li>Route::put()</li>
+<li>Route::delete()</li>
+<li>Route::any()</li>
+</ul>
+
+<p>
+كل نوع يستخدم حسب طريقة الطلب (HTTP Method).
+</p>
+
+<hr>
+
+<h2>تمرير متغير داخل الرابط (Route Parameters)</h2>
+
+<pre><code>
 Route::get('/user/{id}', function ($id) {
     return "User ID: " . $id;
 });
-</pre>
+</code></pre>
 
 <p>
-الآن يمكنك استقبال متغير من الرابط.
+الآن عند زيارة:
+</p>
+
+<pre><code>
+/user/5
+</code></pre>
+
+<p>
+سيظهر:
+</p>
+
+<pre><code>
+User ID: 5
+</code></pre>
+
+<hr>
+
+<h2>جعل المتغير اختياري</h2>
+
+<pre><code>
+Route::get('/user/{name?}', function ($name = "Guest") {
+    return $name;
+});
+</code></pre>
+
+<hr>
+
+<h2>استخدام Controller بدلاً من Closure</h2>
+
+<pre><code>
+Route::get('/dashboard', [DashboardController::class, 'index']);
+</code></pre>
+
+<p>
+وهذا أفضل في المشاريع الكبيرة لتنظيم الكود.
+</p>
+
+<hr>
+
+<h2>تجميع Routes باستخدام Group</h2>
+
+<pre><code>
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    });
+});
+</code></pre>
+
+<p>
+الآن الرابط سيكون:
+</p>
+
+<pre><code>
+/admin/dashboard
+</code></pre>
+
+<hr>
+
+<h2>أفضل ممارسات تنظيم Routing</h2>
+
+<ul>
+<li>استخدم Controllers بدلاً من Closures في المشاريع الكبيرة</li>
+<li>استخدم Route Groups لتنظيم المسارات</li>
+<li>ضع Middleware لحماية الصفحات</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول Laravel Routing</h2>
+
+<h3>ما الفرق بين web.php و api.php ؟</h3>
+<p>
+web.php يستخدم لتطبيقات الويب التقليدية،
+بينما api.php يستخدم لبناء REST APIs.
+</p>
+
+<h3>هل يمكن استخدام Middleware مع Route؟</h3>
+<p>
+نعم، يمكن ربط أي Route بـ Middleware لحمايته.
+</p>
+
+<h3>هل ترتيب Routes مهم؟</h3>
+<p>
+نعم، Laravel يقرأ Routes من الأعلى للأسفل.
 </p>
 
 <hr>
 
 <h3>🎥 شرح بالفيديو</h3>
-<p>
-يمكنك مشاهدة شرح عملي من هذا الفيديو:
-</p>
 
-<a href="https://www.youtube.com/results?search_query=laravel+routing+tutorial" target="_blank">
-مشاهدة شرح Laravel Routing على يوتيوب
+<a href="https://www.youtube.com/results?search_query=laravel+routing+arabic+tutorial" target="_blank">
+مشاهدة شرح Laravel Routing كامل
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="laravel-middleware.html">شرح Laravel Middleware</a> |
+<a href="laravel-validation.html">شرح Laravel Validation</a>
+</p>
 
 </div>
 
