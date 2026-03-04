@@ -3,33 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شرح React Hooks للمبتدئين</title>
+
+<title>شرح React Hooks للمبتدئين | useState و useEffect مع أمثلة عملية</title>
+
+<meta name="description" content="تعلم React Hooks للمبتدئين مع شرح useState و useEffect خطوة بخطوة وأمثلة عملية لبناء مكونات تفاعلية في React.">
+
+<meta name="keywords" content="React Hooks شرح, useState مثال, useEffect شرح, تعلم React للمبتدئين, react hooks tutorial arabic">
+
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<div class="container">
-<h1>شرح React Hooks</h1>
+<div class="navbar">
+<img src="../images/logo.svg" alt="Syntax Dev Logo">
+<div class="nav-links">
+<a href="../index.html">الرئيسية</a>
+<a href="../articles.html">المقالات</a>
+<a href="../about.html">من أنا</a>
+</div>
+</div>
 
-<h2>useState</h2>
-<pre>
+<div class="container">
+
+<h1>شرح React Hooks للمبتدئين (useState و useEffect)</h1>
+
+<p>
+تعتبر <strong>React Hooks</strong> من أهم المميزات الحديثة في React،
+حيث تسمح لك باستخدام الحالة (State) ودورة حياة المكون
+بدون الحاجة إلى Class Components.
+</p>
+
+<hr>
+
+<h2>ما هي React Hooks ؟</h2>
+
+<p>
+React Hooks هي دوال خاصة تم إضافتها في React 16.8
+وتسمح لك باستخدام ميزات مثل State و Lifecycle
+داخل Functional Components.
+</p>
+
+<hr>
+
+<h2>أولاً: شرح useState</h2>
+
+<p>
+Hook <strong>useState</strong> تُستخدم لإنشاء حالة (State) داخل المكون.
+</p>
+
+<h3>مثال عملي:</h3>
+
+<pre><code>
 import { useState } from "react";
 
-const [count, setCount] = useState(0);
-</pre>
+function Counter() {
 
-<h2>useEffect</h2>
-<pre>
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        زيادة
+      </button>
+    </div>
+  );
+}
+</code></pre>
+
+<h3>شرح الكود:</h3>
+
+<ul>
+<li>count → القيمة الحالية</li>
+<li>setCount → دالة تحديث القيمة</li>
+<li>useState(0) → القيمة الابتدائية</li>
+</ul>
+
+<hr>
+
+<h2>ثانياً: شرح useEffect</h2>
+
+<p>
+Hook <strong>useEffect</strong> تُستخدم لتنفيذ كود بعد تحميل المكون
+أو عند تغيير قيمة معينة.
+</p>
+
+<h3>مثال:</h3>
+
+<pre><code>
+import { useEffect } from "react";
+
 useEffect(() => {
   console.log("Component Loaded");
 }, []);
-</pre>
+</code></pre>
+
+<h3>ماذا يعني [] ؟</h3>
+
+<ul>
+<li>[] → يعمل مرة واحدة عند تحميل المكون</li>
+<li>[count] → يعمل عند تغير count</li>
+<li>بدون مصفوفة → يعمل عند كل إعادة رسم</li>
+</ul>
 
 <hr>
+
+<h2>مثال يجمع useState و useEffect</h2>
+
+<pre><code>
+import { useState, useEffect } from "react";
+
+function App() {
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, [count]);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      {count}
+    </button>
+  );
+}
+</code></pre>
+
+<hr>
+
+<h2>أهم قواعد استخدام Hooks</h2>
+
+<ul>
+<li>يجب استدعاء Hooks في أعلى المكون</li>
+<li>لا تستخدم Hooks داخل شروط أو حلقات</li>
+<li>استخدمها فقط داخل Functional Components</li>
+</ul>
+
+<hr>
+
+<h2>أسئلة شائعة حول React Hooks</h2>
+
+<h3>هل Hooks أفضل من Class Components؟</h3>
+نعم، لأنها أبسط وأسهل في القراءة وإعادة الاستخدام.
+
+<h3>هل يمكن استخدام أكثر من useState؟</h3>
+نعم، يمكنك استخدام أكثر من Hook داخل نفس المكون.
+
+<hr>
+
 <h3>🎥 شرح بالفيديو</h3>
-<a href="https://www.youtube.com/results?search_query=react+hooks+tutorial" target="_blank">
-مشاهدة شرح React Hooks
+
+<a href="https://www.youtube.com/results?search_query=react+hooks+tutorial+arabic" target="_blank">
+مشاهدة شرح React Hooks بالعربي
 </a>
+
+<hr>
+
+<p>
+قد يهمك أيضاً:
+<a href="javascript-basics.html">تعلم JavaScript من الصفر</a> |
+<a href="react-first-project.html">إنشاء أول مشروع React</a>
+</p>
+
 </div>
 
 <footer>
